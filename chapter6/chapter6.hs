@@ -1,4 +1,6 @@
 module ChapterSix where
+  import Data.List
+
   data DayOfWeek =
     Mon | Tue | Weds | Thu | Fri | Sat | Sun
     deriving (Show)
@@ -132,31 +134,79 @@ module ChapterSix where
   comaperPapus p p' = p > p'
 
   -- 16.4 Match the types
-  -- 1.
+  -- 1. No
+  i :: Num a => a
+  -- i :: a
+  i = 1
 
-  -- 2.
+  -- 2. No
+  f :: Float
+  -- f :: Num a => a 
+  f = 1.0
 
-  -- 3.
+  -- 3. Yes
+  -- g :: Float
+  g :: Fractional a => a
+  g = 1.0
 
-  -- 4.
+  -- 4. Yes
+  -- h :: Float 
+  h :: RealFrac a => a
+  h = 1.0
 
-  -- 5.
+  -- 5. Yes
+  -- freud :: a -> a
+  freud :: Ord a => a  -> a
+  freud x = x
+  
+  -- 6. Yes
+  -- freud' :: a -> a
+  freud' :: Int -> Int
+  freud' x = x
 
-  -- 6.
+  -- 7. No
+  myX = 1 :: Int
+  sigmund :: Int -> Int
+  -- sigmund :: a -> a
+  sigmund x = myX
 
-  -- 7.
+  -- 8. No
+  myX' = 1 :: Int
+  sigmund' :: Int -> Int
+  -- sigmund' :: Num a => a -> a
+  sigmund' x = myX'
 
-  -- 8.
+  -- 9. Yes because Int has an Instance of Ord
+  -- jung :: Ord a => [a] -> a
+  jung :: [Int] -> Int
+  jung xs = head (sort xs) 
 
-  -- 9.
+  -- 10. Yes because the type definition of sort requires any types
+  --     that has an instance of Ord
+  -- young :: [Char] -> Char
+  young :: Ord a => [a] -> a
+  young xs = head (sort xs)
 
-  -- 10.
+  -- 11. No because the type definition of mySort restricts the type of the sort
+  mySort :: [Char] -> [Char]
+  mySort = sort
 
-  -- 11.
+  signifier :: [Char] -> Char
+  -- signifier :: Ord a => [a] -> a
+  signifier xs = head (mySort xs)
 
-
-
-
+  -- 6.14 Type-Know-Do Two:: Electric Typealoo
+  -- 1. 
+  chk :: Eq b => (a -> b) -> a -> b -> Bool
+  chk fn x y = fn x == y
+  
+  -- 2. 
+  arith :: Num b
+        => (a -> b)
+        -> Integer
+        -> a
+        -> b
+  arith fn x y = (fn y) + (fromInteger x)  
 
 
 
