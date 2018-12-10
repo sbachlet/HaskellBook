@@ -56,3 +56,6 @@ module Chapter7 where
     antarcticOrGalapagos p =
         (galapagosPenguin p)
      || (antarcticPenguin p)
+
+    f :: (a, b) -> (c, d) -> ((b, d), (a, c))
+    f (a, b) (c, d) = ((b, d), (a, c))
