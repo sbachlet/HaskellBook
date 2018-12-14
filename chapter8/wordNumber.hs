@@ -18,8 +18,8 @@ digitToWord n
 
 digits :: Int -> [Int]
 digits n
-  | (div n 10) == 0 = [mod n 10]
-  | otherwise       = digits (div n 10) ++ [mod n 10]
+  | (div n 10) == 0 = (:[]) $ mod n 10
+  | otherwise       = digits (div n 10) ++ ((:[]) $ mod n 10)
 
 wordNumber :: Int -> String
 wordNumber n = concat . (intersperse "-") . (map digitToWord) . digits $ n
