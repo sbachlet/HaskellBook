@@ -27,4 +27,8 @@ main = do
   print $ liftA2 (^) (h 5) (m 4)
   print $ liftA2 (*) (h 5) (m 4)
   print $ liftA2 (*) (h 1) (m 1)
-  
+  a <- fmap length $ liftA2 (++) getLine getLine
+  b <- liftA2 (,) getLine getLine
+  print $ a
+  print $ b
+
