@@ -20,6 +20,11 @@ main :: IO ()
 main = do 
   print $ f 3
   print $ g 8
-  print $ liftA2 (++) (f 3) (g 7)
-  print $ liftA2 (+) (h 5) (m 1)
-  print $ liftA2 (+) (h 5) (m 6)
+  print $ (++) <$> (f 3) <*> (g 7)
+  print $ (+) <$> (h 5) <*> (m 1)
+  print $ (+) <$> (h 5) <*> (m 6)
+  print $ liftA2 (++) (g 9) (f 4)
+  print $ liftA2 (^) (h 5) (m 4)
+  print $ liftA2 (*) (h 5) (m 4)
+  print $ liftA2 (*) (h 1) (m 1)
+  
